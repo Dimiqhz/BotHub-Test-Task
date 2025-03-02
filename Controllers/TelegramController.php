@@ -43,10 +43,12 @@ class TelegramController {
                 $text = trim($message->getText());
 
                 if (strpos($text, '/start') === 0) {
-                    $this->userModel->findOrCreate($telegramId);
-                    $this->bot->sendMessage($chatId, "Добро пожаловать! Ваш счет: 0.00$");
+                    $user = $this->userModel->findOrCreate($telegramId);
+                    // Обновлено: если пользователь сущесвтует или только создан, отправим ему текущий баланс, а не 0$
+                    $balance = number_format((float)$user['balance'], 2, '.', '');
+                    $this->bot->sendMessage($chatId, "Добро пожаловать! Ваш счет: {$balance}$");
                     continue;
-                }
+                }                
 
                 if (empty($text)) {
                     $this->bot->sendMessage($chatId, "Сообщение не может быть пустым. Пожалуйста, отправьте число.");
