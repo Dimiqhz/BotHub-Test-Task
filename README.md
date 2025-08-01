@@ -1,13 +1,14 @@
-# BotHub-Test-Task
+# Simple Telegram Bot (simple balance system)
 
-## Тестовое задание для компании BotHub
+## Disclaimer: This project was developed as a test assignment for BotHub.
 
-### Немного о реализации: 
-- Проект реализован используя паттерн MVC (около него, контроллер в случае ТГ бота исполняет роль и контроллера и представления)
-- Проект использует PDO с защитой для MySQL (не знаю, нужно ли это в рамках Telegram, но да, а ещё есть валидация отправленных пользователем сообщений)
-- Согласно ТЗ я решил использовать только оболочку TelegramBot/api
-- Если я где-то ошибся - сообщите мне и я поправлю это
-- Так же оставил код для PostreSQL, чисто как вторая вариация
-- В ТЗ не было явно задано про сокращения до N знаков после запятой, не делал
+### A few words about the implementation:
+- The project follows the MVP pattern, adapted to the Telegram Bot environment (the controller acts as both the controller and the view).
+- It uses PDO with prepared statements for MySQL to prevent SQL injection, which is especially important since the bot processes raw user input. While Telegram bots don't operate in a browser context, protecting against SQL injection remains essential when storing or using user-submitted data — so I implemented both safe queries and input validation.
+- As per the assignment requirements, I used only the TelegramBot/api wrapper without any additional frameworks.
+- If you find any mistakes or areas for improvement, please let me know — I’m happy to fix them.
+- I also included optional PostgreSQL support as an alternative implementation.
+
+The requirements didn’t explicitly mention rounding numbers to a certain number of decimal places, so this functionality was not implemented.
 
 ![Screenshot](https://i.imgur.com/cnMUZ9a.png)
